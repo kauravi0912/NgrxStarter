@@ -1,0 +1,42 @@
+<div class="h-screen w-screen flex m-2 flex-row">
+  <form [formGroup]="form" (ngSubmit)="saveAll()">
+    <span>
+      <button class="border-2 border-gray-500 rounded-sm p-2" (click)="editAll()">Edit all</button>
+      <button class="border-2 border-gray-500 rounded-sm p-2 ml-5" type="submit">Save all</button>
+    </span>
+    <table class="rounded-sm border-2 border-black grow mt-5">
+      <thead class="border-2 border-black">
+        <tr>
+          <th class="border-2 border-black p-2">ID</th>
+          <th class="border-2 border-black p-2">Name</th>
+          <th class="border-2 border-black p-2">Username</th>
+          <th class="border-2 border-black p-2">Email</th>
+        </tr>
+      </thead>
+      <tbody class="border-2 border-black text-center" >
+        <ng-container formArrayName="usersForm">
+          <ng-container *ngFor="let user of usersForm?.controls; let i=index">
+            <tr class="border-2 border-black">
+              <td class="border-2 border-black">{{user?.get('id')?.value}}</td>
+              <td class="border-2 border-black">
+                <input class="border border-gray-700 p-2" formControlName="name" placeholder="Enter user name"/>
+              </td>
+              <td class="border-2 border-black">
+                <input class="border border-gray-700 p-2" formControlName="userName" placeholder="Enter username"/>
+              </td>
+              <td class="border-2 border-black">
+                <input class="border border-gray-700 p-2" formControlName="email" placeholder="Enter email"/>
+              </td>
+              <!-- <td class="justify-between gap-5">
+                <button class="border-2 border-gray-500 rounded-sm p-2" (click)="editUserInfo(user)">Edit</button>
+                <button class="border-2 border-gray-500 rounded-sm ml-5 p-2" (click)="saveUserInfo(user)">Save</button>
+              </td> -->
+            </tr>
+          </ng-container>
+
+        </ng-container>
+
+      </tbody>
+    </table>
+  </form>
+</div>
